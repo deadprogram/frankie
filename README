@@ -1,4 +1,4 @@
-frankie is a plugin for the Sinatra web framework (http://http://sinatrarb.com/) that allows you to easily create a Facebook application by using the Facebooker gem.
+Frankie (http://facethesinatra.com) is a plugin for the Sinatra web framework (http://sinatrarb.com/) that allows you to easily create a Facebook application by using the Facebooker gem.
 
 Written by Ron Evans (http://www.deadprogrammersociety.com)
 
@@ -56,7 +56,7 @@ production:
  callback_url: http://yourrealserver.com
 -------
 
-- Make sure you have setup your facebook application on the facebook site. Google "setup new facebook application" if you are unsure how to do this. I recommend starting with an IFrame application.
+- Make sure you have setup your Facebook application on the facebook site. Google "setup new facebook application" if you are unsure how to do this. I recommend starting with an IFrame application.
 
 - Create your application, based on the sample above, and then run it:
 ruby sample.rb
