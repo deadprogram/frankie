@@ -58,6 +58,9 @@ production:
 
 - Make sure you have setup your facebook application on the facebook site. Google "setup new facebook application" if you are unsure how to do this. I recommend starting with an IFrame application.
 
-- Create your application, based on the sample above, and run it, by going to http://apps.facebook.com/yourappname
+- Create your application, based on the sample above, and then run it:
+ruby sample.rb
+
+- Test your app by going to http://apps.facebook.com/yourappname
 
 Have fun!
