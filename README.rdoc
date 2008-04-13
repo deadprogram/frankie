@@ -1,0 +1,69 @@
+= Frankie
+
+Frankie (http://facethesinatra.com) is a plugin for the Sinatra web framework (http://sinatrarb.com) that allows you to easily create a Facebook application by using the Facebooker gem.
+
+Written by Ron Evans (http://www.deadprogrammersociety.com)
+
+Based on merb_facebooker (http://github.com/vanpelt/merb_facebooker) by Chris Van Pelt, which was based on
+the Rails classes in Facebooker (http://facebooker.rubyforge.org/) by Mike Mangino, Shane Vitarana, & Chad Fowler
+
+Thanks, everyone!
+
+= Here is a very simple example application:
+
+	require 'rubygems'
+	require 'frankie'
+
+	configure do
+	  set_option :sessions, true
+	  load_facebook_config "./config/facebooker.yml", Sinatra.env
+	end
+
+	## facebooker helpers
+	before do
+	  ensure_authenticated_to_facebook
+	  ensure_application_is_installed_by_facebook_user
+	end
+
+	## the site
+	get '/' do
+	  body "<h1>Hello #{session['facebook_session'].user.name} and welcome to frankie!</h1>"
+	end
+
+
+= How to use frankie
+- Install the frankie gem (which will install both Sinatra and Facebooker if you do not already have them)
+	sudo gem install frankie
+
+- Create the application directories for your new app
+	mkdir myapp
+	cd myapp
+	mkdir config
+
+- Put your facebooker.yml file into the /myapp/config directory, and set the values to your information. Here is a simple example of the file:
+
+	development:
+	 api_key: apikeyhere 
+	 secret_key: secretkeyhere
+	 canvas_page_name: yourcanvashere    
+	 callback_url: http://localhost:4567
+	test:
+	 api_key: apikeyhere 
+	 secret_key: secretkeyhere
+	 canvas_page_name: yourcanvashere    
+	 callback_url: http://localhost:4567
+	production:
+	 api_key: apikeyhere 
+	 secret_key: secretkeyhere
+	 canvas_page_name: yourcanvashere    
+	 callback_url: http://yourrealserver.com
+
+
+- Make sure you have setup your Facebook application on the facebook site. Google "setup new facebook application" if you are unsure how to do this. I recommend starting with an IFrame application. A more advanced and cooler approach uses a tunneling script like this one: http://pastie.caboo.se/178903
+
+- Create your application, based on the sample above, and then run it:
+ruby sample.rb
+
+- Test your app by going to http://apps.facebook.com/yourappname
+
+Have fun!
