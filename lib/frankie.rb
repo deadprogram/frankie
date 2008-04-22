@@ -12,7 +12,8 @@ module Frankie
 
   module Loader
     
-    require "yaml"
+    require 'yaml'
+    require 'uri'
     
     def load_facebook_config(file, env=:development)
       if File.exist?(file)
@@ -176,6 +177,11 @@ module Frankie
       params['format']="fbml" if request_is_for_a_facebook_canvas?
     end
 
+    def fb_url_for(url)
+      return URI.escape(url) if request_is_for_a_facebook_canvas?
+      "http://apps.facebook.com/#{ENV['FACEBOOKER_RELATIVE_URL_ROOT']}/#{URI.escape(url)}"
+    end
+    
   end
   
 end

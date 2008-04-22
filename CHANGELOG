@@ -1,3 +1,5 @@
+v0.2.4.	Add fb_url_for helper method to create link URL's that have proper Facebook application reference included
+
 v0.2.3.	Correct README and fix Sinatra version dependency in gem
 
 v0.2.2.	Updated to deal with session change in Sinatra, plus misc bug fixes with Facebooker integration
