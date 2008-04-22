@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+host, remote_port, local_port = ARGV
+raise 'You must specify at least a hostname - i.e. tunnel myhost.com' unless host
+remote_port ||= 10000
+local_port  ||= 4567
+puts "Tunneling #{host}:#{remote_port} to 0.0.0.0:#{local_port}"
+begin
+  exec "autossh -M 48484 -nNT -g -R *:#{remote_port}:0.0.0.0:#{local_port} #{host}"
+rescue
+  raise "Tunnel failed to start. Do you have autossh installed?"
+end

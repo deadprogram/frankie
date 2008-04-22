@@ -53,7 +53,7 @@ module Frankie
     private
     
     def session_already_secured?    
-      (@facebook_session = session['facebook_session']) && session['facebook_session'].secured?
+      (@facebook_session = session[:facebook_session]) && session[:facebook_session].secured?
     end
     
     def secure_with_token!
@@ -61,7 +61,7 @@ module Frankie
         @facebook_session = new_facebook_session
         @facebook_session.auth_token = params['auth_token']
         @facebook_session.secure!
-        session['facebook_session'] = @facebook_session
+        session[:facebook_session] = @facebook_session
       end
     end
     
@@ -76,9 +76,8 @@ module Frankie
     end
     
     def create_new_facebook_session_and_redirect!
-      s = new_facebook_session
-      session['facebook_session'] = s      
-      throw :halt, do_redirect(session['facebook_session'].login_url) unless @installation_required 
+      session[:facebook_session] = new_facebook_session  
+      throw :halt, do_redirect(session[:facebook_session].login_url) unless @installation_required 
     end
     
     def new_facebook_session
@@ -89,7 +88,7 @@ module Frankie
       return unless request_is_for_a_facebook_canvas?
       if friends = facebook_params['friends']
         facebook_session.user.friends = friends.map do |friend_uid|
-          User.new(friend_uid, facebook_session)
+          Facebooker::User.new(friend_uid, facebook_session)
         end
       end
     end
@@ -139,7 +138,7 @@ module Frankie
     
     def do_redirect(*args)
       if request_is_for_a_facebook_canvas?
-        fbml_redirect_tag(args[0])
+        fbml_redirect_tag(args)
       else
         redirect args[0]
       end
@@ -150,8 +149,8 @@ module Frankie
     end
     
     def request_is_for_a_facebook_canvas?
-      return false if !params["fb_sig_in_canvas"]
-      !params["fb_sig_in_canvas"].blank?
+      return false if params["fb_sig_in_canvas"].nil?
+      params["fb_sig_in_canvas"] == "1"
     end
     
     def application_is_installed?
@@ -170,7 +169,7 @@ module Frankie
     end
     
     def application_is_not_installed_by_facebook_user
-      throw :halt, do_redirect(session['facebook_session'].install_url)
+      throw :halt, do_redirect(session[:facebook_session].install_url)
     end
     
     def set_fbml_format

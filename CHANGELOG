@@ -1,1 +1,3 @@
+v0.2.2.	Updated to deal with session change in Sinatra, plus misc bug fixes with Facebooker integration
+
 v0.2.0.	Converted codebase to become Ruby Gem
