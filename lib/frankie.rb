@@ -178,8 +178,10 @@ module Frankie
     end
 
     def fb_url_for(url)
-      return URI.escape(url) if request_is_for_a_facebook_canvas?
-      "http://apps.facebook.com/#{ENV['FACEBOOKER_RELATIVE_URL_ROOT']}/#{URI.escape(url)}"
+      url = "" if url == "/"
+      url = URI.escape(url)
+      return url if !request_is_for_a_facebook_canvas?
+      "http://apps.facebook.com/#{ENV['FACEBOOKER_RELATIVE_URL_ROOT']}/#{url}"
     end
     
   end
