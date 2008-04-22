@@ -27,7 +27,7 @@ Thanks, everyone!
 
 	## the site
 	get '/' do
-	  body "<h1>Hello #{session['facebook_session'].user.name} and welcome to frankie!</h1>"
+	  body "<h1>Hello #{session[:facebook_session].user.name} and welcome to frankie!</h1>"
 	end
 
 
@@ -59,7 +59,15 @@ Thanks, everyone!
 	 callback_url: http://yourrealserver.com
 
 
-- Make sure you have setup your Facebook application on the facebook site. Google "setup new facebook application" if you are unsure how to do this. I recommend starting with an IFrame application. A more advanced and cooler approach uses a tunneling script like this one: http://pastie.caboo.se/178903
+- Make sure you have setup your Facebook application on the facebook site. Google "setup new facebook application" if you are unsure how to do this. I recommend starting with an IFrame application. A more advanced and cooler approach uses a tunneling script, which is included with Frankie. You do need to have "autossh" installed in order to use it, as well as a publicly addressable server. From a command prompt type tunnel <host> <remote_port> <local_port> like this:
+
+	tunnel app.myhost.com 10000 4567
+
+You will also need to make sure your server's /etc/ssh/sshd_config contains the following line:
+
+	GatewayPorts clientspecified
+
+Thanks to the many people like Evan Weaver, Blake Mizerany, and whoever else that have provided the code used in this tunneling script.
 
 - Create your application, based on the sample above, and then run it:
 ruby sample.rb
