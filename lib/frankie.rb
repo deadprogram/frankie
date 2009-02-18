@@ -28,7 +28,8 @@ module Frankie
   
   module EventContext
 
-    require "facebooker"
+    # pin it to newer version of Facebooker
+    gem 'mmangino-facebooker', '>=1.0.2'
     
     def facebook_session
       @facebook_session
@@ -188,6 +189,6 @@ module Frankie
   
 end
   
-# extend sinatra with frankie methods
-Sinatra::EventContext.send(:include, Frankie::EventContext)
+# extend sinatra with frankie methods, changed to work with Sinatra 0.9.x
+Sinatra::Default.send(:include, Frankie::EventContext)
 include Frankie::Loader
