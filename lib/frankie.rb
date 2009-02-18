@@ -30,6 +30,7 @@ module Frankie
 
     # pin it to newer version of Facebooker
     gem 'mmangino-facebooker', '>=1.0.2'
+    require 'facebooker'    
     
     def facebook_session
       @facebook_session
