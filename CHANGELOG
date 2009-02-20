@@ -1,3 +1,5 @@
+v0.3.0  Updated to work with Sinatra 0.9.x and facebooker 1.0.2, thanks to mjfreshyfresh
+
 v0.2.5.	Bugfix for fb_url_for helper method
 
 v0.2.4.	Add fb_url_for helper method to create link URL's that have proper Facebook application reference included

@@ -7,6 +7,8 @@ Written by Ron Evans (http://www.deadprogrammersociety.com)
 Based on merb_facebooker (http://github.com/vanpelt/merb_facebooker) by Chris Van Pelt, which was based on
 the Rails classes in Facebooker (http://facebooker.rubyforge.org/) by Mike Mangino, Shane Vitarana, & Chad Fowler
 
+2/20/2009 - Now updated to Sinatra 0.9 and facebooker thanks to mjfreshyfresh.
+
 Thanks, everyone!
 
 = Here is a very simple example application:
