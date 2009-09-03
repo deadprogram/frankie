@@ -141,7 +141,7 @@ module Frankie
     
     def do_redirect(*args)
       if request_is_for_a_facebook_canvas?
-        fbml_redirect_tag(args)
+        fbml_redirect_tag(args[0])
       else
         redirect args[0]
       end
